@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{a2f0ecd9-5a7d-4a89-9cde-7a570f30d553}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	Cylinders		: ARRAY[0..4] OF FB_Cylinder;
+	i				: DINT;
+	
+	bAutoCmd		: BOOL;
+	bManCmd			: BOOL;
+	bStartCmd		: BOOL;
+	bStopCmd		: BOOL;
+	
+	bAuto			: BOOL;
+	bRunning		: BOOL;
+	
+	nRunTime		: REAL;
+	nStopTime		: REAL;
+	
+	bInit			: BOOL := TRUE;
+	PartData		: ARRAY[0..9] OF PartStatus;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+	Cylinders[0].Name := 'Infeed';
+	Cylinders[1].Name := 'Clamp';
+	Cylinders[2].Name := 'Outfeed';
+	Cylinders[3].Name := 'Reject';
+	Cylinders[4].Name := 'Spare';
+	bInit := FALSE;
+END_IF
+
+IF NOT bAuto THEN
+	FOR i := 0 TO 4 DO
+		Cylinders[i].Manual();
+	END_FOR
+ELSE
+	IF bRunning THEN
+		Sim();
+	END_IF
+END_IF
+
+Mode();
+
+IF bAuto THEN
+	IF bRunning THEN
+		nRunTime := nRunTime + 0.01;
+	ELSE
+		nStopTime := nStopTime + 0.01;
+	END_IF
+END_IF
+]]></ST>
+    </Implementation>
+    <Action Name="Mode" Id="{1a3d1fc8-a3bb-47f7-8750-d3887caae1cb}">
+      <Implementation>
+        <ST><![CDATA[IF bAutoCmd THEN
+	bAuto := TRUE;
+END_IF
+
+IF bManCmd THEN
+	bAuto := FALSE;
+	bRunning := FALSE;
+END_IF
+
+IF bAuto AND bStartCmd THEN
+	bRunning := TRUE;
+END_IF
+
+IF bAuto AND bStopCmd THEN
+	bRunning := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="Sim" Id="{8f7a9bf0-8010-4abf-bea6-39bfc5b09b84}">
+      <Declaration><![CDATA[METHOD Sim
+VAR_INPUT
+END_VAR
+VAR_INST
+	rand		: ARRAY[0..4] OF DRAND;
+	j			: DINT;
+	tonP		: TON;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[rand[0](Seed:=TO_INT(i));
+j := TO_DINT(rand[0].Num * 100);
+IF j >= 0 AND j <= 4 THEN
+	Cylinders[j].Extended := NOT Cylinders[j].Extended;
+END_IF
+
+IF bAuto AND bRunning THEN
+	rand[1](Seed:=TO_INT(i));
+	rand[2](Seed:=TO_INT(j));
+	tonP(IN:=(NOT tonP.Q), PT:=T#5S);
+	IF tonP.Q THEN
+		MEMCPY(ADR(PartData[1]), ADR(PartData[0]), SIZEOF(PartStatus) * 9);
+		PartData[0].Status := SEL((rand[1].Num < 0.8), FALSE, TRUE);
+		PartData[0].Diameter := rand[2].Num * 100;
+		PartData[0].Rate := rand[1].Num;
+		PartData[0].Torque := rand[2].Num * 25;
+		PartData[0].Operator := 'hbeckhoff';
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
