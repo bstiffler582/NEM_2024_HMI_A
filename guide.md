@@ -47,11 +47,17 @@ The LiveView window has a number of useful tools within the 'Developer Tools' di
 
 From the 'Elements' tab, you can explore all the markup and style sheets of the page. When a graphical component is not being rendered how we expect, we can modify the markup and stylesheet attributes directly from here.
 
-#### Exercise: Open up LiveView and the developer console.
+#### Exercise: Open up LiveView and the developer tools.
 - Explore the DOM; generated markup and stylesheets
 - Make some CSS or layout tweaks and observe the real time changes
 - Modify the EventGrid control to customize the button layout
 - Make these changes permanent by adding *selectors* and *attributes* to the project CSS file(s)
+
+```css
+.TcHmi_Controls_Beckhoff_TcHmiEventGrid-template-type-toggles > div {
+    display: none;
+}
+```
 
 Another useful test and debug functionality is the `console` tab. We can execute JavScript right from within this window, with all the loaded references and resources from the framework.
 
@@ -60,15 +66,25 @@ Another useful test and debug functionality is the `console` tab. We can execute
 TcHmi.Server.getCurrentUser()
 TcHmi.Symbol.read('Test', TcHmi.SymbolType.Internal)
 ```
+- There may be a few different ways to accomplish the same thing
+```js
+TcHmi.Symbol.readEx('%i%Test%/i%')
+// server must be read asynchronously!
+TcHmi.Symbol.readEx2(
+    '%s%ADS.PLC1.GVL.bAuto%/s%', 
+    (data) => console.log(data)
+)
+```
 - Get a control instance and read some property values
 ```js
-const ctrl = TcHmi.Controls.get('TcHmiImage_1')
+const ctrl = TcHmi.Controls.get('lblMainPage')
+ctrl.getText()
 ctrl.getTop()
-ctrl.getSrc()
 ```
 - You can change any properties that are not read-only, and the framework will update the DOM. Note the property names and getter/setter method names:
 ```js
 ctrl.setTop(50)
+TcHmi.Binding.createEx2('%i%Test%/i%', 'Text', ctrl)
 ```
 Note that we have modified the runtime version. Reloading the content file will restore the previous property value.
 
@@ -90,11 +106,29 @@ Observe the 'function binding' issue with indirect addressing. We can use the br
 
 - Our function will be very similar to `CreateBinding`, just with an extra *index* parameter
 - Special handling:
-    - Parameter types of `Control`, `ControlPropertyName`, `Symbol`, and `Number`
+    - Parameter types of `Control`, `String`, `Symbol`, and `Number`
     - Parameter of type `Symbol` must be passed by reference
-    - We will manually add `refTo` to the property name metadata
 
-> When we go to call our function, make sure all of the bindings are globally accessible. For instance, the context object is "lost" and cannot be resolved from outside of the actions and conditions editor...
+The body will look something like:
+
+```js
+// get symbol expression components
+const expr = symbol.getExpression();
+const tag = expr.getTag();
+const content = expr.getContent();
+
+// rebuild symbol expression string with index
+const bindStr = `%${tag}%${content}[${index}]%/${tag}%`;
+
+// create binding
+TcHmi.Binding.createEx2(bindStr, property, control);
+```
+
+Let's try to call our function when the Combobox control's index is changed. If it doesn't work the first time, you may want to add some `console.log` statements to see what's going on.
+
+> When we go to call our function, make sure all of the bindings are appropriately accessible. For instance, the context/owner object seems to be *only scoped to the actions and conditions editor*. Passing a "hard" reference to the control might be the only way.
+
+We can refine this even more by changing the property name parameter to type `ControlPropertyName` and manually adding a `refTo` entry in the function metadata. How do we know to do this? We can reference the `CreateBinding` function's metadata in the `Packages` directory upon building any TcHmi project.
 
 <a id="server"></a>
 
@@ -104,3 +138,4 @@ Observe the 'function binding' issue with indirect addressing. We can use the br
     - Log page for extension and dotnet errors
 - Config Export/Import
     - Runtime user management, recipes
+    - Important for offline publishing

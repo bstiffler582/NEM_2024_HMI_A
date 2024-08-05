@@ -1,23 +1,7 @@
 <div id="Events_1" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="800" data-tchmi-height="640">
 
 <div id="TcHmiEventGrid_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiEventGrid" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-server-interval="1000" data-tchmi-show-menu-bar="true" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-right="10" data-tchmi-bottom="10">
-<script data-tchmi-target-attribute="data-tchmi-filter" type="application/json">
-[
-  {
-    "path": "domain",
-    "comparator": "==",
-    "value": "TcHmiEventLogger"
-  },
-  {
-    "logic": "OR"
-  },
-  {
-    "path": "domain",
-    "comparator": "==",
-    "value": "TcHmiAlarm"
-  }
-]
-</script>
+
 <script data-tchmi-target-attribute="data-tchmi-columns" type="application/json">
 [
   {
