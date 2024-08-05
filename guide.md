@@ -15,7 +15,11 @@
 1.14 Presentation key points:
 - Compatability & Package Manager
 - **Exercise: Context object**
+    - Add a simple control to view the axis status
+    - Use the axis "Running" symbol for an indicator
 - **Exercise: NC Viewer**
+    - Drop in control and configure (check property tooltips)
+    - Create 'NC' (500) and 'NC-Task' (501) ADS targets
 
 <a id="responsive"></a>
 
@@ -80,15 +84,18 @@ The developer of our demo application has created a Function Block to handle sim
 
 #### Exercise: Rework the Manual page to use fewer user control instances.
 
+- Create a combobox control and populate it with a list of indices
+- Bind an instance of the Cylinder user control using indirect addressing
+
 Observe the 'function binding' issue with indirect addressing. We can use the bracket notation for **read-only** indicators, but read/write control must be explicitly bound. We can potentially address this by using the `CreateBinding` function, but we will still need to statically define our array indices. To make this truly dynamic, we will have to write some code.
 
-#### Exercise: Write a new helper function like `CreateBinding`, but for array symbols.
-- Observe the `CreateBinding` function meta data for parameter and type information.
-- Our version will be very similar, just with an extra parameter: `index`
+- Our function will be very similar to `CreateBinding`, just with an extra *index* parameter
+- Special handling:
+    - Parameter types of `Control`, `ControlPropertyName`, `Symbol`, and `Number`
+    - Parameter of type `Symbol` must be passed by reference
+    - We will manually add `refTo` to the property name metadata
 
-```js
-// function body
-```
+> When we go to call our function, make sure all of the bindings are globally accessible. For instance, the context object is "lost" and cannot be resolved from outside of the actions and conditions editor...
 
 <a id="tables"></a>
 

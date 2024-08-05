@@ -8,6 +8,18 @@
       "frameworkUserControlConfig": "UserControls\\Cylinder.usercontrol.json",
       "id": "tchmi:project#/definitions/Cylinder",
       "type": "object"
+    },
+    "Symbol_Of_Symbol": {
+      "allOf": [
+        {
+          "$ref": "tchmi:framework#/definitions/Symbol"
+        },
+        {
+          "frameworkSymbolSubType": {
+            "$ref": "tchmi:framework#/definitions/Symbol"
+          }
+        }
+      ]
     }
   }
 }
