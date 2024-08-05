@@ -5,8 +5,7 @@
 2. [Responsive Layouts](#responsive)
 3. [Developer Tools](#developer_tools)
 4. [Reusability](#reusability)
-5. [Tabular Data](#tables)
-6. [Server Config](#server)
+5. [Server Config](#server)
 
 <a id="whats_new"></a>
 
@@ -97,19 +96,9 @@ Observe the 'function binding' issue with indirect addressing. We can use the br
 
 > When we go to call our function, make sure all of the bindings are globally accessible. For instance, the context object is "lost" and cannot be resolved from outside of the actions and conditions editor...
 
-<a id="tables"></a>
-
-### 5. Tabular Data
-
-There are a couple options for visualizing tabular data in TwinCAT HMI. The quick and dirty way is to just use the *Object Browser* control. This automatically digests whatever structured data you throw at it, and allows for read/write access to all elements and members.
-
-For more customization options, the *Data Grid* control can be used. This allows you to specify column definitions and custom data handling functions.
-
-#### Exercise: Visualize the structure array data in an Object Browser control. Then, create a Data Grid control with some custom formatting and data handling columns.
-
 <a id="server"></a>
 
-### 6. Server Config
+### 5. Server Config
 - Troubleshooting
     - Client and target license utilization
     - Log page for extension and dotnet errors

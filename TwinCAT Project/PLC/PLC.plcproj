@@ -21,9 +21,6 @@
     <Compile Include="DUTs\MoveState_t.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\PartStatus.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GVLs\GVL.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>

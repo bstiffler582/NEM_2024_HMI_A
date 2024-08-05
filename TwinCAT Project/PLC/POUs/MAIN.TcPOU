@@ -15,7 +15,6 @@ VAR
 	nStopTime		: REAL;
 	
 	bInit			: BOOL := TRUE;
-	PartData		: ARRAY[0..9] OF PartStatus;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -84,20 +83,6 @@ END_VAR]]></Declaration>
 j := TO_DINT(rand[0].Num * 100);
 IF j >= 0 AND j <= 4 THEN
 	Cylinders[j].Extended := NOT Cylinders[j].Extended;
-END_IF
-
-IF GVL.bAuto AND GVL.bRunning THEN
-	rand[1](Seed:=TO_INT(i));
-	rand[2](Seed:=TO_INT(j));
-	tonP(IN:=(NOT tonP.Q), PT:=T#5S);
-	IF tonP.Q THEN
-		MEMCPY(ADR(PartData[1]), ADR(PartData[0]), SIZEOF(PartStatus) * 9);
-		PartData[0].Status := SEL((rand[1].Num < 0.8), FALSE, TRUE);
-		PartData[0].Diameter := rand[2].Num * 100;
-		PartData[0].Rate := rand[1].Num;
-		PartData[0].Torque := rand[2].Num * 25;
-		PartData[0].Operator := 'hbeckhoff';
-	END_IF
 END_IF]]></ST>
       </Implementation>
     </Method>

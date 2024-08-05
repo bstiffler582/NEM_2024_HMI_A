@@ -949,16 +949,6 @@
             },
             "USEMAPPING": true
         },
-        "ADS.PLC1.MAIN.PartData": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::PartData",
-            "SCHEMA": {
-                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..9_OF-PartStatus"
-            },
-            "USEMAPPING": true
-        },
         "ADS.PLC1.MAIN.bAutoCmd": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
