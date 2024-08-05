@@ -919,6 +919,26 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL.bAuto": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::bAuto",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL.bRunning": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL::bRunning",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.MAIN.Cylinders": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -939,16 +959,6 @@
             },
             "USEMAPPING": true
         },
-        "ADS.PLC1.MAIN.bAuto": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::bAuto",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
         "ADS.PLC1.MAIN.bAutoCmd": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -964,16 +974,6 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::MAIN::bManCmd",
-            "SCHEMA": {
-                "$ref": "tchmi:general#/definitions/BOOL"
-            },
-            "USEMAPPING": true
-        },
-        "ADS.PLC1.MAIN.bRunning": {
-            "ACCESS": 3,
-            "DOMAIN": "ADS",
-            "DYNAMIC": true,
-            "MAPPING": "PLC1::MAIN::bRunning",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -1016,6 +1016,41 @@
             "MAPPING": "PLC1::MAIN::nStopTime",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.Motion.Axis1.NcToPlc.ActPos": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Motion::Axis1::NcToPlc::ActPos",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.Motion.Axis1.Status.Moving": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::Motion::Axis1::Status::Moving",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "StateDWord bit 9+10",
+                        "propertyOrder": 32
+                    }
+                ]
             },
             "USEMAPPING": true
         },
@@ -4088,6 +4123,8 @@
                 "ADS.AdsSyncReadStateReq": 3,
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
+                "ADS.PLC1.GVL.bAuto": 3,
+                "ADS.PLC1.GVL.bRunning": 3,
                 "ADS.PLC1.MAIN.Cylinders": 3,
                 "ADS.PLC1.MAIN.PartData": 3,
                 "ADS.PLC1.MAIN.bAuto": 3,
@@ -4098,6 +4135,9 @@
                 "ADS.PLC1.MAIN.bStopCmd": 3,
                 "ADS.PLC1.MAIN.nRunTime": 3,
                 "ADS.PLC1.MAIN.nStopTime": 3,
+                "ADS.PLC1.Motion.Axis1": 3,
+                "ADS.PLC1.Motion.Axis1.NcToPlc.ActPos": 3,
+                "ADS.PLC1.Motion.Axis1.Status.Moving": 3,
                 "ChangeUserSettings": 3,
                 "ConfirmAlarm": 3,
                 "CreateEvent": 3,

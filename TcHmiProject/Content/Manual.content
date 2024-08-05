@@ -8,4 +8,108 @@
 </div>
 <div id="Cylinder_5" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="176" data-tchmi-height-unit="px" data-tchmi-left="677" data-tchmi-left-unit="px" data-tchmi-target-user-control="UserControls/Cylinder.usercontrol" data-tchmi-top="87" data-tchmi-top-unit="px" data-tchmi-width="210" data-tchmi-width-unit="px" data-tchmi-cylinder="%s%ADS.PLC1.MAIN.Cylinders[3]%/s%">
 </div>
+<div id="TcHmiContainer_1" data-tchmi-type="TcHmi.Controls.System.TcHmiContainer" data-tchmi-height="199" data-tchmi-height-unit="px" data-tchmi-left="17" data-tchmi-left-unit="px" data-tchmi-top="323" data-tchmi-top-unit="px" data-tchmi-width="210" data-tchmi-width-unit="px">
+
+<script data-tchmi-target-attribute="data-tchmi-border-width" type="application/json">
+{
+  "left": 1,
+  "right": 1,
+  "top": 1,
+  "bottom": 1,
+  "leftUnit": "px",
+  "rightUnit": "px",
+  "topUnit": "px",
+  "bottomUnit": "px"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-border-style" type="application/json">
+{
+  "left": "Solid",
+  "right": "Solid",
+  "top": "Solid",
+  "bottom": "Solid"
+}
+</script>
+<div id="TcHmiTextblock_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-text="Axis" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-word-wrap="true" data-tchmi-right="10" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center">
+</div>
+<div id="TcHmiEllipse_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiEllipse" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="79" data-tchmi-left-unit="px" data-tchmi-top="63" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px">
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%ADS.PLC1.Motion.Axis1.Status.Moving%/s%",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "symbolExpression": "%ctx%args[0]%/ctx%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "value": "true"
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiEllipse_2::FillColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/Color",
+                  "value": {
+                    "color": "rgba(37, 239, 37, 1)"
+                  }
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiEllipse_2::FillColor%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/Color",
+                  "value": null
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="TcHmiTextbox_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-horizontal-scroll="Auto" data-tchmi-left="30" data-tchmi-left-unit="px" data-tchmi-text="%s%ADS.PLC1.Motion.Axis1.NcToPlc.ActPos%/s%" data-tchmi-top="145" data-tchmi-top-unit="px" data-tchmi-vertical-scroll="Auto" data-tchmi-width="150" data-tchmi-width-unit="px">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+</div>
 </div>

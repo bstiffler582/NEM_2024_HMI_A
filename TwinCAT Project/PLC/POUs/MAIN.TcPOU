@@ -11,9 +11,6 @@ VAR
 	bStartCmd		: BOOL;
 	bStopCmd		: BOOL;
 	
-	bAuto			: BOOL;
-	bRunning		: BOOL;
-	
 	nRunTime		: REAL;
 	nStopTime		: REAL;
 	
@@ -31,44 +28,45 @@ END_VAR
 	bInit := FALSE;
 END_IF
 
-IF NOT bAuto THEN
+IF NOT GVL.bAuto THEN
 	FOR i := 0 TO 4 DO
 		Cylinders[i].Manual();
 	END_FOR
 ELSE
-	IF bRunning THEN
+	IF GVL.bRunning THEN
 		Sim();
 	END_IF
 END_IF
 
 Mode();
 
-IF bAuto THEN
-	IF bRunning THEN
+IF GVL.bAuto THEN
+	IF GVL.bRunning THEN
 		nRunTime := nRunTime + 0.01;
 	ELSE
 		nStopTime := nStopTime + 0.01;
 	END_IF
 END_IF
-]]></ST>
+
+Motion();]]></ST>
     </Implementation>
     <Action Name="Mode" Id="{1a3d1fc8-a3bb-47f7-8750-d3887caae1cb}">
       <Implementation>
         <ST><![CDATA[IF bAutoCmd THEN
-	bAuto := TRUE;
+	GVL.bAuto := TRUE;
 END_IF
 
 IF bManCmd THEN
-	bAuto := FALSE;
-	bRunning := FALSE;
+	GVL.bAuto := FALSE;
+	GVL.bRunning := FALSE;
 END_IF
 
-IF bAuto AND bStartCmd THEN
-	bRunning := TRUE;
+IF GVL.bAuto AND bStartCmd THEN
+	GVL.bRunning := TRUE;
 END_IF
 
-IF bAuto AND bStopCmd THEN
-	bRunning := FALSE;
+IF GVL.bAuto AND bStopCmd THEN
+	GVL.bRunning := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Action>
@@ -88,7 +86,7 @@ IF j >= 0 AND j <= 4 THEN
 	Cylinders[j].Extended := NOT Cylinders[j].Extended;
 END_IF
 
-IF bAuto AND bRunning THEN
+IF GVL.bAuto AND GVL.bRunning THEN
 	rand[1](Seed:=TO_INT(i));
 	rand[2](Seed:=TO_INT(j));
 	tonP(IN:=(NOT tonP.Q), PT:=T#5S);

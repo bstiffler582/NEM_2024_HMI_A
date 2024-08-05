@@ -83,8 +83,8 @@
 }
 </script>
 </div>
-<div id="TcHmiCheckbox_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCheckbox" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-text="Auto" data-tchmi-top="108" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-is-read-only="true" data-tchmi-state-symbol="%s%ADS.PLC1.MAIN.bAuto%/s%">
+<div id="TcHmiCheckbox_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCheckbox" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-text="Auto" data-tchmi-top="108" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-is-read-only="true" data-tchmi-state-symbol="%s%ADS.PLC1.GVL.bAuto%/s%">
 </div>
-<div id="TcHmiCheckbox_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCheckbox" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-text="Running" data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-is-read-only="true" data-tchmi-state-symbol="%s%ADS.PLC1.MAIN.bRunning%/s%">
+<div id="TcHmiCheckbox_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCheckbox" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-text="Running" data-tchmi-top="144" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-is-read-only="true" data-tchmi-state-symbol="%s%ADS.PLC1.GVL.bRunning%/s%">
 </div>
 </div>
