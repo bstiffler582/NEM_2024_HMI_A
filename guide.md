@@ -34,10 +34,11 @@ We frequently advertise TwinCAT HMI as "Responsive". This means that all the com
 >TwinCAT HMI has these tools for building responsive layouts, but it is still much easier to statically define all size/position values. This is the default behavior with the drag & drop designer. Responsive layouts require many more design considerations and forethought.
 
 #### Exercise: Fix the Main page of the HMI application so that it is responsive.
+Use the Grid control. Refine the column and row definitions to get an appropriate and responsive layout. Change controls with static size and position properties so they are more responsive. If something that needs to be centered must also remain a fixed size, you may need to implement the **transformation "trick"** (e.g. set the position property to 50% and apply a -50% translation).
 
-Use the Grid control. Refine the column and row definitions to get an appropriate and responsive layout. Change controls with static size and position properties so they are more responsive. If something that needs to be centered must also remain a fixed size, you may need to implement a transformation "trick".
-
-It is helpful to use the document outline
+Tips:
+- You may have to use nested containers (grid within a grid?)
+- It is helpful to use the document outline when dealing with nested controls
 
 <a id="developer_tools"></a>
 
@@ -46,6 +47,9 @@ It is helpful to use the document outline
 The LiveView window has a number of useful tools within the 'Developer Tools' dialog (⚙️).
 
 From the 'Elements' tab, you can explore all the markup and style sheets of the page. When a graphical component is not being rendered how we expect, we can modify the markup and stylesheet attributes directly from here.
+
+#### Exercise: Markup generation
+Use the element inspector tool to narrow in on a control (i.e. the image control on Main). Compare the markup in the content file with the markup in Live View. Build the project so you can dig into a control's inner markup, styling and logic. Understand that the actual markup is **generated** by the framework, and more specifically, the specific control's JS logic.
 
 #### Exercise: Open up LiveView and the developer tools.
 - Explore the DOM; generated markup and stylesheets
