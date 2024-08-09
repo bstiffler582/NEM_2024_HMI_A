@@ -6,6 +6,7 @@
 3. [Developer Tools](#developer_tools)
 4. [Reusability](#reusability)
 5. [Server Config](#server)
+6. [Project Generator](#project_generator)
 
 <a id="whats_new"></a>
 
@@ -148,3 +149,13 @@ We can refine this even more by changing the property name parameter to type `Co
 - Config Export/Import
     - Runtime user management, recipes
     - Important for offline publishing
+
+### 6. Project Generator
+
+The Project Generator has been out for awhile now, and we **could not recommend it more** for getting started. Even if you do not intend to any of the templating, there is a lot to learn from creating and perusing a generated project. This is the best way to get started "on the right foot" and prevent future rework for any TwinCAT HMI project.
+- Responsive navigation
+- Localization
+- Themed resources
+
+#### Exercise: Run the project generator and poke around
+> Some changes to the way 1.14 handles dependencies may require you to manually install packages to the offline source ahead of time.
