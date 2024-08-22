@@ -19,7 +19,8 @@
     - Use the axis "Running" symbol for an indicator
 - **Exercise: NC Viewer**
     - Drop in control and configure (check property tooltips)
-    - Create 'NC' (500) and 'NC-Task' (501) ADS targets
+    - Create 'NC' (500) and 'NC-Task1' (501) ADS targets
+    - Add second Axis and enable, jog from the HMI
 
 <a id="responsive"></a>
 
