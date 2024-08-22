@@ -123,7 +123,7 @@ Observe the 'function binding' issue with indirect addressing. We can use the br
 
 - Our function will be very similar to `CreateBinding`, just with an extra *index* parameter
 - Special handling:
-    - Parameter types of `Control`, `String`, `Symbol`, and `Number`
+    - Parameter types of `Control`, `String`, `Symbol`, and `Number` with names `control`, `property`, `symbol` and `index` respectively
     - Parameter of type `Symbol` must be passed by reference
 
 The body will look something like:
