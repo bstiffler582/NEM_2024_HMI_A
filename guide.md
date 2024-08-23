@@ -158,7 +158,9 @@ We can refine this even more by changing the property name parameter to type `Co
     - Log page for extension and dotnet errors
 - Config Export/Import
     - Runtime user management, recipes
-    - Important for offline publishing
+    - Important for offline publishing*
+ 
+> *The publish process performs a merge between the engineering and target databases. Configurations that were changed or added on the runtime target - e.g. user management settings, recipes, etc. - will be lost during an "offline" (simple file transfer) publish of the configuration database.
 
 ### 6. Project Generator
 
