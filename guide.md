@@ -17,10 +17,13 @@
 - **Exercise: Context object**
     - Add a simple control to view the axis status
     - Use the axis "Running" symbol for an indicator
+    - Observe the difference between a Control/Framework event and a custom event*
 - **Exercise: NC Viewer**
     - Drop in control and configure (check property tooltips)
     - Create 'NC' (500) and 'NC-Task1' (501) ADS targets
     - Add second Axis and enable, jog from the HMI
+ 
+> *In a custom event (triggered by a symbol value change), the relative *Owner* control is resolved to a absolute reference in the Actions and conditions editor. The scope of the Context object seems to be related to the initator of the event. This will be relevant in a later exercise involving user-defined functions.
 
 <a id="responsive"></a>
 
@@ -143,7 +146,7 @@ TcHmi.Binding.createEx2(bindStr, property, control);
 
 Let's try to call our function when the Combobox control's index is changed. If it doesn't work the first time, you may want to add some `console.log` statements to see what's going on.
 
-> When we go to call our function, make sure all of the bindings are appropriately accessible. For instance, the context/owner object seems to be *only scoped to the actions and conditions editor*. Passing a "hard" reference to the control might be the only way.
+> *Be careful using the Context *Owner* reference here. Our function needs to be able to resolve the control reference *outside* the scope of the Actions and conditions editor.
 
 We can refine this even more by changing the property name parameter to type `ControlPropertyName` and manually adding a `refTo` entry in the function metadata. How do we know to do this? We can reference the `CreateBinding` function's metadata in the `Packages` directory upon building any TcHmi project.
 
