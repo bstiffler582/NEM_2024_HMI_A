@@ -18,7 +18,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInit THEN
+      <ST><![CDATA[// added a comment!
+IF bInit THEN
 	Cylinders[0].Name := 'Infeed';
 	Cylinders[1].Name := 'Clamp';
 	Cylinders[2].Name := 'Outfeed';
@@ -41,7 +42,7 @@ Mode();
 
 IF GVL.bAuto THEN
 	IF GVL.bRunning THEN
-		nRunTime := nRunTime + 0.01;
+		nRunTime := nRunTime + 0.02;
 	ELSE
 		nStopTime := nStopTime + 0.01;
 	END_IF
